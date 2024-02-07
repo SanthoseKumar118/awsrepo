@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build --platform=linux/amd64 -t my-app-repo .
+      - docker build -t my-app-repo .
       - docker tag my-app-repo:latest 628513987074.dkr.ecr.ap-northeast-1.amazonaws.com/my-app-repo:latest
   post_build:
     commands:
