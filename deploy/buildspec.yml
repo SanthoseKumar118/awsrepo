@@ -11,14 +11,13 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI .
-      - docker tag my-app-repo:latest 628513987074.dkr.ecr.ap-northeast-1.amazonaws.com/my-app-repo:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 628513987074.dkr.ecr.ap-northeast-1.amazonaws.com/my-app-repo:latest
+      - docker push $REPOSITORY_URI
       - echo Writing image definitions file...
-      - printf '[{"name":"MyContainer","imageUri":"628513987074.dkr.ecr.ap-northeast-1.amazonaws.com/my-app-repo:latest"}]' > imagedefinitions.json
+      - printf '[{"name":"MyContainer","imageUri":"%s"}]' $REPOSITORY_URI > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
