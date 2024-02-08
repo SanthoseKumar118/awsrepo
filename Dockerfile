@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:14
+FROM --platform=linux/arm64 node:14
 
 # Create app directory
 WORKDIR /usr/src/app
